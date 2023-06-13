@@ -11,7 +11,10 @@ const form = document.querySelector("[data-form]");
  */
 const result = document.querySelector("[data-result]");
 
-
+/**
+ * responsible for how the division interacts with what the user inputs
+ * 
+ */
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
@@ -26,7 +29,10 @@ form.addEventListener("submit", (event) => {
       document.body.innerHTML = /*html*/ `
       Something critical went wrong. Please reload the page
       `;
-  }else{
+      const error = ('error') => {
+        throw new Error 
+      }
+ }else{
     result.innerText = parseFloat(Math.floor(dividend / divider));
   }
 });

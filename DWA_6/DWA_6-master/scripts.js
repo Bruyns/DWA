@@ -19,6 +19,7 @@ let matches = books
  * the loop used to preview the opening 36 books on the front webpage
  * @typedef {DocumentFragment} starting - creates a DOM fragment for the books shown in the preview
  * @property {Element} element - is used to attach a element to the button class in the HTML
+ * @property {} classList - 
  */
 
 /**

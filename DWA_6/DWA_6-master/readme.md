@@ -7,6 +7,7 @@
   - [description](#description)
   - [instructions](#instructions)
   - [features](#features)
+  - [notes to self](#notes-to-self)
 
 ## description
 
@@ -29,3 +30,7 @@ It also has a show more feature when the search result returns more then the (36
 - preview screen
 - book descriptions
 - show more button
+
+## notes to self
+- check the html.js file afew times over to insure proper punctuation
+- rearrange script.js file so its more readable
