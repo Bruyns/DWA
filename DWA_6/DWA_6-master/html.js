@@ -1,7 +1,7 @@
 // @ts-check
 
 /**
- * @param {string} label - 
+ * @param {string} label - the data-atrribute found in the index.html file
  * @returns {HTMLElement} 
  */
 const getHtml = (label) => {
@@ -15,12 +15,22 @@ const getHtml = (label) => {
 }
 
 /**
- * @type {{list : object, search : object, settings : object}} html
- * @property {object} list - constain DOM references that relate to the books being displayed
- * @property {object} search - constain DOM references that relate to the search functionality
- * @property {object} settings - constain DOM references that relate to the settings functionality
+ * type {{list : object, search : object, settings : object}} html
+ * property {object} list - constain DOM references that relate to the books being displayed
+ * property {object} search - constain DOM references that relate to the search functionality
+ * property {object} settings - constain DOM references that relate to the settings functionality
  */
 
+/**
+ * @typedef {object} html - contains all htmlelements to be used by the script
+ * @property {object} list - all book list options 
+ * @property {object} search - settings related to the search functionality
+ * @property {object} settings - all site settings changeable by the user
+ */
+
+/**
+ * @type {html} 
+ */
 export const html = {
     list: {
         items: getHtml('list-items'),
