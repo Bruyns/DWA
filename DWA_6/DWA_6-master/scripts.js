@@ -294,7 +294,9 @@ html.list.items.addEventListener('click', (event) => {
             active = result
         }
     }
-    
+    /**
+     * preview of each book when clicked/views by user
+     */
     if (active) {
         html.list.active.open = true
         html.list.blur.src = active.image
