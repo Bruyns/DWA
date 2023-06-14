@@ -4,11 +4,12 @@
  * @param {string} label - 
  * @returns {HTMLElement} 
  */
-const html = (label) => {
+const getHtml = (label) => {
     const node = document.querySelector(`[data-${label}]`);
+    // literally works for every data-attribute in the code or added in the future
 
     if (!(node instanceof HTMLElement)){
-    throw new Error (`the ${node} you are looking for does not exist, please reload`)
+    throw new Error (`the data-${label} you are looking for does not exist, please reload`)
     }
     return node;
 }
@@ -22,16 +23,16 @@ const html = (label) => {
 
 export const html = {
     list: {
-        items: html('list-items'),
-        message: html('list-message'),
-        button: html('list-button'),
-        active: html('list-active'),
-        blur: html('list-blur'),
-        image: html('list-image'),
-        title: html('list-title'),
-        subtitle: html('list-subtitle'),
-        description: html('list-description'),
-        close: html('list-close'),
+        items: getHtml('list-items'),
+        message: getHtml('list-message'),
+        button: getHtml('list-button'),
+        active: getHtml('list-active'),
+        blur: getHtml('list-blur'),
+        image: getHtml('list-image'),
+        title: getHtml('list-title'),
+        subtitle: getHtml('list-subtitle'),
+        description: getHtml('list-description'),
+        close: getHtml('list-close'),
     },
 
     search: {
