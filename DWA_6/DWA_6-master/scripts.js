@@ -68,7 +68,7 @@ for (const [id, name] of Object.entries(genres)) {
     genreHtml.appendChild(element)
 }
 
-html.search.genre.appendChild(genreHtml)
+document.querySelector('[data-search-genres]').appendChild(genreHtml)
 
 /**
  * AUTHORS SEARCH - searchs books for a specific author
@@ -87,18 +87,18 @@ for (const [id, name] of Object.entries(authors)) {
     authorsHtml.appendChild(element)
 }
 
-html.search.author.appendChild(authorsHtml)
+document.querySelector('[data-search-authors]').appendChild(authorsHtml)
 
 /**
  * THEME SELECTOR - sets page theme to light or dark mode
  * 
  */
 if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-    html.settings.theme.value = 'night'
+    document.querySelector('[data-settings-theme]').value = 'night'
     document.documentElement.style.setProperty('--color-dark', '255, 255, 255');
     document.documentElement.style.setProperty('--color-light', '10, 10, 20');
 } else {
-    html.settings.theme.value = 'day'
+    document.querySelector('[data-settings-theme]').value = 'day'
     document.documentElement.style.setProperty('--color-dark', '10, 10, 20');
     document.documentElement.style.setProperty('--color-light', '255, 255, 255');
 }
@@ -113,43 +113,43 @@ if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').match
 /**
  * SHOW MORE button
  */
-html.list.items.innerText = `Show more (${books.length - BOOKS_PER_PAGE})`
-html.list.button.disabled = (matches.length - (page * BOOKS_PER_PAGE)) > 0
+document.querySelector('[data-list-button]').innerText = `Show more (${books.length - BOOKS_PER_PAGE})`
+document.querySelector('[data-list-button]').disabled = (matches.length - (page * BOOKS_PER_PAGE)) > 0
 
-html.list.button.innerHTML = `
+document.querySelector('[data-list-button]').innerHTML = `
     <span>Show more</span>
     <span class="list__remaining"> (${(matches.length - (page * BOOKS_PER_PAGE)) > 0 ? (matches.length - (page * BOOKS_PER_PAGE)) : 0})</span>
 `
 /**
  * SEARCH OVERLAY - screen to input search parameters( CLOSE BUTTON )
  */
-html.search.cancel.addEventListener('click', () => {
-    html.search.overlay.open = false
+document.querySelector('[data-search-cancel]').addEventListener('click', () => {
+    document.querySelector('[data-search-overlay]').open = false
 })
 /**
  * THEME SETTINGS OVERLAY - screen to change various settings (themes)( CLOSE BUTTON)
  */
-html.settings.cancel.addEventListener('click', () => {
-    html.settings.overlay.open = false
+document.querySelector('[data-settings-cancel]').addEventListener('click', () => {
+    document.querySelector('[data-settings-overlay]').open = false
 })
 
 /**
  * SEARCH OVERLAY - screen to input search parameters( OPEN BUTTON )
  */
-html.search.button.addEventListener('click', () => {
-    html.search.overlay.open = true 
-    html.search.title.focus()
+document.querySelector('[data-header-search]').addEventListener('click', () => {
+    document.querySelector('[data-search-overlay]').open = true 
+    document.querySelector('[data-search-title]').focus()
 })
 
 /**
  * DESCRIPTION OVERLAY - screen to input search parameters( OPEN BUTTON )
  */
-html.settings.button.addEventListener('click', () => {
-    html.settings.overlay.open = true 
+document.querySelector('[data-header-settings]').addEventListener('click', () => {
+    document.querySelector('[data-settings-overlay]').open = true 
 })
 
-html.list.close.addEventListener('click', () => {
-    html.list.active.open = false
+document.querySelector('[data-list-close]').addEventListener('click', () => {
+    document.querySelector('[data-list-active]').open = false
 })
 
 /**
@@ -160,7 +160,7 @@ html.list.close.addEventListener('click', () => {
 /**
  * THEME SETTINGS - sets the theme color to dark or light depending on user selected option
  */
-html.settings.form.addEventListener('submit', (event) => {
+document.querySelector('[data-settings-form]').addEventListener('submit', (event) => {
     event.preventDefault()
     const formData = new FormData(event.target)
     const { theme } = Object.fromEntries(formData)
@@ -173,13 +173,13 @@ html.settings.form.addEventListener('submit', (event) => {
         document.documentElement.style.setProperty('--color-light', '255, 255, 255');
     }
     
-    html.settings.overlay.open = false
+    document.querySelector('[data-settings-overlay]').open = false
 })
 
 /**
  * AUTHOR AN GENRE SEARCH - creates files in the DOM based on the matched searchs
  */
-html.search.form.addEventListener('submit', (event) => {
+document.querySelector('[data-search-form]').addEventListener('submit', (event) => {
     event.preventDefault()
     const formData = new FormData(event.target)
     const filters = Object.fromEntries(formData)
@@ -209,12 +209,12 @@ html.search.form.addEventListener('submit', (event) => {
     matches = result
 
     if (result.length < 1) {
-        html.list.message.classList.add('list__message_show')
+        document.querySelector('[data-list-message]').classList.add('list__message_show')
     } else {
-        html.list.message.classList.remove('list__message_show')
+        document.querySelector('[data-list-message]').classList.remove('list__message_show')
     }
 
-    html.list.items.innerHTML = ''
+    document.querySelector('[data-list-items]').innerHTML = ''
     const newItems = document.createDocumentFragment()
 
     for (const { author, id, image, title } of result.slice(0, BOOKS_PER_PAGE)) {
@@ -237,19 +237,19 @@ html.search.form.addEventListener('submit', (event) => {
         newItems.appendChild(element)
     }
 
-    html.list.items.appendChild(newItems)
-    html.list.button.disabled = (matches.length - (page * BOOKS_PER_PAGE)) < 1
+    document.querySelector('[data-list-items]').appendChild(newItems)
+    document.querySelector('[data-list-button]').disabled = (matches.length - (page * BOOKS_PER_PAGE)) < 1
 
-    html.list.button.innerHTML = `
+    document.querySelector('[data-list-button]').innerHTML = `
         <span>Show more</span>
         <span class="list__remaining"> (${(matches.length - (page * BOOKS_PER_PAGE)) > 0 ? (matches.length - (page * BOOKS_PER_PAGE)) : 0})</span>
     `
 
     window.scrollTo({top: 0, behavior: 'smooth'});
-    html.search.overlay.open = false
+    document.querySelector('[data-search-overlay]').open = false
 })
 
-html.list.button.addEventListener('click', () => {
+document.querySelector('[data-list-button]').addEventListener('click', () => {
     const fragment = document.createDocumentFragment()
 
     for (const { author, id, image, title } of matches.slice(page * BOOKS_PER_PAGE, (page + 1) * BOOKS_PER_PAGE)) {
@@ -272,11 +272,11 @@ html.list.button.addEventListener('click', () => {
         fragment.appendChild(element)
     }
 
-    html.list.items.appendChild(fragment)
+    document.querySelector('[data-list-items]').appendChild(fragment)
     page += 1
 })
 
-html.list.items.addEventListener('click', (event) => {
+document.querySelector('[data-list-items]').addEventListener('click', (event) => {
     const pathArray = Array.from(event.path || event.composedPath())
     let active = null
 
@@ -294,15 +294,13 @@ html.list.items.addEventListener('click', (event) => {
             active = result
         }
     }
-    /**
-     * preview of each book when clicked/views by user
-     */
+    
     if (active) {
-        html.list.active.open = true
-        html.list.blur.src = active.image
-        html.list.image.src = active.image
-        html.list.title.innerText = active.title
-        html.list.subtitle.innerText = `${authors[active.author]} (${new Date(active.published).getFullYear()})`
-        html.list.description.innerText = active.description
+        document.querySelector('[data-list-active]').open = true
+        document.querySelector('[data-list-blur]').src = active.image
+        document.querySelector('[data-list-image]').src = active.image
+        document.querySelector('[data-list-title]').innerText = active.title
+        document.querySelector('[data-list-subtitle]').innerText = `${authors[active.author]} (${new Date(active.published).getFullYear()})`
+        document.querySelector('[data-list-description]').innerText = active.description
     }
 })
