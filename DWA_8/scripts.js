@@ -25,11 +25,13 @@
 
 /**
  * BOOKS PREVIEW - shows a set amount of books on the opening page when button pressed
- * @type {starting}
+ * @type {starting} - creates a DOM element
+ * @returns {Document} - returns the new document info in the function
  */
 
 const starting = document.createDocumentFragment()
 
+const preview = (starting) => {
 for (const { author, id, image, title } of matches.slice(0, BOOKS_PER_PAGE)) {
     const element = document.createElement('button')
     element.classList = 'preview'
@@ -48,8 +50,9 @@ for (const { author, id, image, title } of matches.slice(0, BOOKS_PER_PAGE)) {
     `
 
     starting.appendChild(element)
+    }
+return starting;
 }
-
 html.list.items.appendChild(starting)
 
 // /**
